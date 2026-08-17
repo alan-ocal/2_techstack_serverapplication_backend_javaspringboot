@@ -6,7 +6,7 @@
 with the Spring MVC web module.
 - `mvnw.cmd`is the wrapper script file 
 - `ProdosApplication.java` bootstraps the SpringBoot project as the main application file
-- `src\main\resoruces\application.properties` is the empty configuration file
+- `src\main\resoruces\application.properties` is the externalized autoconfiguration file. It can be a `application.yml` file as well
 - `static` place any static content such as images, stylesheets, JavaScript. This content is served to the browser.
 - `templates` used to place template files that will be used as the UI and render the content on the browser. 
 - `ProdosApplicationTests.java` Junit test class file used to ensure the Spring application context is loaded successfully.
