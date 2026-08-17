@@ -21,3 +21,14 @@ with the Spring MVC web module.
 ## Running instructions
 - `mvn spring-boot:run`
   ![image](imgs/demo.png)
+
+## Defining our own configuration properties
+- `@ConfigurationProperties` is a Spring Boot annotation that allows us to bind properties from a configuration source 
+(such as `application.properties or application.yml`) to a Java class. 
+It simplifies the `process of externalizing` configuration and makes it easier to manage and update configuration settings
+without modifying the code.
+
+- Connect the third party remote services such as `feedback service of the product`
+To connect this remote service, we require some attributes such as service host, service port, timeout
+
+- `ConnectionSettings` is the class that holds the configuration properties for the remote service

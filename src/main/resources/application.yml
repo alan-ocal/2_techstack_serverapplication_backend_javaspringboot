@@ -1,31 +1,7 @@
-# define embedded server configurations
-server:
-  port: 8181
-  address: localhost
-  session:
-    timeout: 1800
-  context-path: /prodos
-  servlet-path: /admin
+feedback:
+  client:
+    port:9090
 
-# defined configurations realted to the database according to dev profile
 spring:
-   datasource:
-    url: jdbc:mysql://localhost/prodos
-    username: prododb
-    password: Elbasit99!
-    driver-class-name: com.mysql.jdbc.Driver
-
-# define logging configurations
-logging:
-  path: /var/log/prodos/
-  file: prodos.log
-  level:
-    root: WARN
-    org:
-      springframework:
-        security: DEBUG
-
-
-
-
-
+  profiles:
+    active: dev
