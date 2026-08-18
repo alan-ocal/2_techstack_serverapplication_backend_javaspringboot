@@ -97,8 +97,7 @@ The SpringApplication class automatically performs a number of tasks including, 
 <!--###############################-->
 
 # 6_annotations
-- ``@Override`` Overriding of a method is done in a subclass ``package com.student.annotations.override.Dog.java``; when I define a method with the same signature as in superclass. ```package com.student.annotations.override.Animal.java`` Methods <b>toString, equals, and hashCode</b> are overridden quite often in subclasses.
- ``@Override`` prevents silent mistakes. If I try to remove the @Override line, the compiler won't warn me, and the method won't override anything. My program may still run, but it could behave unexpectedly because the intended method was never actually overridden.
+- ``@Override`` Overriding of a method is done in a subclass or implementing an interface
 
 - ``@SpringBootApplication`` annotation is a combination of ``@EnablAutoConfiguration,@Configuration, and @ComponentScan``
   - `@ComponentScan` enables component scanning in the Spring application. We can use the `@Component`, `@Controller`, `@Service`     
