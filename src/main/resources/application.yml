@@ -1,7 +1,0 @@
-feedback:
-  client:
-    port:9090
-
-spring:
-  profiles:
-    active: dev
