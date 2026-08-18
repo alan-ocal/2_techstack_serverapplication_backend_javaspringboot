@@ -17,6 +17,7 @@ with the Spring MVC web module.
 - `ProdosApplicationTests.java` Junit  test class file used to ensure the Spring application context is loaded successfully.
 - `ProductControllerTest` Junit  test class file used to ensure the ProductController class is loaded successfully.
 ![image](/imgs/h2_configuration.png)
+-![image](imgs/h2_output_springboot_run.png)
 - `src\main\resoruces\application.properties` is the externalized autoconfiguration file for H2 via JDBC
   
 ## 2 Configuring Data and CRUD Operations
@@ -45,5 +46,9 @@ It creates Repository implementations from interfaces and generates queires from
   sets spring.sql.init.mode=never so the table is not created twice.
 - ![image](/imgs/demo.png)
 ### B-ORM Hibernate
-
+- Object-relational mapping (ORM) means mapping `Java Persistence Objects to the relational database tables`.
+- It is a technique used to fetch and manipulate the data using the `object-oriented programming` paradigm.
+- We `don't need to write SQL queries manually`, and Hibernate handles the mapping between Java objects and database tables.
+- Hibeernate is a popular ORM tool and the most popular JPA implementation.
+- Adding the spring-boot-starter-data-jpa dependency to the pom.xml file to provide Hibernate as the JPA implementation.
 ### C-Spring Data JPA
