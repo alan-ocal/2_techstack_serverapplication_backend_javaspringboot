@@ -1,5 +1,5 @@
-INSERT INTO PRODUCT (id, name, type) VALUES ('MOB01', 'Samsung A6 plus', 'Mobile');
-INSERT INTO PRODUCT (id, name, type) values ('MOB02', 'iPhone X plus', 'Mobile');
-INSERT INTO PRODUCT (id, name, type) values ('TLV01', 'Sony Bravia KLV-50W662F 50 Inch Full HD', 'Television');
-INSERT INTO PRODUCT (id, name, type) values ('CAM01', 'Canon EOS 1500D Digital SLR Camera', 'DSLR Camera');
-INSERT INTO PRODUCT (id, name, type) values ('SPK01', 'JBL Cinema 510 5.1 with Powered Subwoofer', 'Home Theater Speaker');
+INSERT INTO PRODUCT (id, name, type, brand, description) values ('MOB01', 'Samsung A6 plus', 'Mobile', 'Samsung', 'Samsung A6 plus is very nice phone with 24mp front camera');
+INSERT INTO PRODUCT (id, name, type, brand, description) values ('MOB02', 'iPhone X plus', 'Mobile', 'Apple', 'iPhone X plus is very nice phone with 24mp front camera');
+INSERT INTO PRODUCT (id, name, type, brand, description) values ('TLV01', 'Sony Bravia KLV-50W662F 50 Inch Full HD', 'Television', 'Sony', 'Sony Bravia is full HD tv');
+INSERT INTO PRODUCT (id, name, type, brand, description) values ('CAM01', 'Canon EOS 1500D Digital SLR Camera', 'DSLR Camera', 'Canon', 'Best DSLR camera in the market');
+INSERT INTO PRODUCT (id, name, type, brand, description) values ('SPK01', 'JBL Cinema 510 5.1 with Powered Subwoofer', 'Home Theater Speaker', 'JBL', 'This sound system is suitable for the Home Theater');
