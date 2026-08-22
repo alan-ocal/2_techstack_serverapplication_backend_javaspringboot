@@ -14,8 +14,7 @@ mariadb -u root -p < sql/mariadb-init.sql
 run a standalone `Main` class to verify the JPA integration and database connection:
 
 This will:
-- Persist an `Author` and a `Book` to the database.
-- Retrieve and print them to the console.
+- Persist a `Book` to the database.
 
 ## Dependencies
 - `hibernate-core`: ORM framework Hibernate.
