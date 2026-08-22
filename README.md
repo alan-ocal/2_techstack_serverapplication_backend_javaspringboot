@@ -5,7 +5,7 @@
 This project demonstrates how to use `Jakarta Persistence (JPA)` with `Hibernate and MariaDB` in a Jakarta EE environment.
 
 ### 1. Database Setup
-Ensure MariaDB is running and a database named `library` exists. You can use the provided script:
+Ensure MariaDB is running and a database named `artclass exists. You can use the provided script:
 ```bash
 mariadb -u root -p < sql/mariadb-init.sql
 ```
@@ -14,7 +14,7 @@ mariadb -u root -p < sql/mariadb-init.sql
 run a standalone `Main` class to verify the JPA integration and database connection:
 
 This will:
-- Persist a `Book` to the database.
+- Persist a `Student` to the database.
 
 ## Dependencies
 - `hibernate-core`: ORM framework Hibernate.
