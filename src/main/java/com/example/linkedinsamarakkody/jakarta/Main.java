@@ -1,122 +1,84 @@
 package com.example.linkedinsamarakkody.jakarta;
 
 
-import com.example.linkedinsamarakkody.jakarta.entities.Book;
-import com.example.linkedinsamarakkody.jakarta.entities.BookType;
-import com.example.linkedinsamarakkody.jakarta.entities.Item;
-import com.example.linkedinsamarakkody.jakarta.entities.keys.ItemKey;
+
+import com.example.linkedinsamarakkody.jakarta.entities.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
-public class
-Main {
+public class Main {
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("library_persistence_unit");
-        //detachAndReattachInstance(emf);
-        //removeInstance(emf);
-        //useGetReference(emf);
-        //useRefresh(emf);
-        createEntityWithComposedPK(emf);
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("artclass_persistence_unit");
+
+//  create(emf);
+//  update(emf);
+// attachAndDetach(emf);
+//   remove(emf);
     }
 
-    private static void createEntityWithComposedPK(EntityManagerFactory emf){
+    private static void create(EntityManagerFactory emf){
         EntityManager em = emf.createEntityManager();
-
         try {
             em.getTransaction().begin();
-//            BookType bookType = new BookType();
-//            bookType.setCode("C001");
-//            bookType.setSubCode("SC001");
-//            bookType.setName("Fiction-Horror");
-//            em.persist(bookType);
+            Student student = new Student();
+            student.setStudent_name("John");
 
-            ItemKey id = new ItemKey();
-            id.setCode("ABC");
-            id.setNumber(100);
-
-            Item i = new Item();
-            i.setId(id);
-            i.setName("ABC-100");
-            em.persist(i);
+            em.persist(student);
             em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+    private static void update(EntityManagerFactory emf) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Student student = em.find(Student.class, 3);
+            student.setStudent_name("Peter");
+            em.getTransaction().commit();
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             em.close();
         }
     }
+    private static void attachAndDetach(EntityManagerFactory emf) {
+        EntityManager em = emf.createEntityManager();
 
-//    private static void useRefresh(EntityManagerFactory emf) {
-//        EntityManager em = emf.createEntityManager();
-//        try {
-//            em.getTransaction().begin();
-//            Book book3 = em.find(Book.class, 3);
-//            System.out.println(book3);
-//            book3.setName("some book");
-//            System.out.println("Before " + book3);
-//            em.refresh(book3);
-//            System.out.println("After " + book3);
-//            em.getTransaction().commit();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            em.close();
-//        }
-//    }
-    //private static void useGetReference (EntityManagerFactory emf){
-    //    EntityManager em = emf.createEntityManager();
-    //        try {
-    //            em.getTransaction().begin();
-    //            //retrieve a row of data with a specified PK (lazily loading data from the database)
-    //            Book book3 = em.getReference(Book.class, 3);
-    //            System.out.println(book3);
-    //            em.getTransaction().commit();
-    //        }catch (Exception e) {
-    //            e.printStackTrace();
-    //        }finally {
-    //            em.close();
-    //        }
-    //    }
-    //}
-    //private static void removeInstance(EntityManagerFactory emf){
-    //    EntityManager em = emf.createEntityManager();
-    //    try {
-    //        em.getTransaction().begin();
-    //        Book book1 = em.find(Book.class, 2);
-    //        em.remove(book1);
-    //        em.getTransaction().commit();
-    //
-    //    }catch (Exception e) {
-    //        e.printStackTrace();
-    //    }finally {
-    //        em.close();
-    //    }
-    //
-    //    }
-    //}
-    //    public static void detachAndReattachInstance(EntityManagerFactory emf){
-    //        EntityManager em = emf.createEntityManager();
-    //
-    //          try {
-    //          em.getTransaction().begin();
-    //          Book book1 = new Book();
-    //          book1.setId(2);
-    //          book1.setName("my newest book");
-    //          book1.setIsbn("123-456");
-    //          em.merge(book1);
-    //          em.detach(book1);
-    //          //book1.setName("my newest book1"); //this LOC doesn't work and there should be no change in the database
-    //          em.getTransaction().commit();
-    //
-    //            }catch (Exception e) {
-    //                e.printStackTrace();
-    //            }finally {
-    //                em.close();
-    //            }
-    //        }
-    //
-    //    }
+        try {
+            em.getTransaction().begin();
+            Student student2 = new Student();
+            student2.setStudent_name("Pery");
+            em.merge(student2);
+            em.detach(student2);
+            student2.setStudent_name("Sue"); //it doesn't work
+            em.getTransaction().commit();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+    private static void remove(EntityManagerFactory emf) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Student student = em.find(Student.class, 3);
+            em.remove(student);
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
 }
+
+
+
