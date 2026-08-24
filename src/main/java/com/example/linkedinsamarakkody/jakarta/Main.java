@@ -2,6 +2,9 @@ package com.example.linkedinsamarakkody.jakarta;
 
 
 import com.example.linkedinsamarakkody.jakarta.entities.Book;
+import com.example.linkedinsamarakkody.jakarta.entities.BookType;
+import com.example.linkedinsamarakkody.jakarta.entities.Item;
+import com.example.linkedinsamarakkody.jakarta.entities.keys.ItemKey;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -14,19 +17,29 @@ Main {
         //detachAndReattachInstance(emf);
         //removeInstance(emf);
         //useGetReference(emf);
-        useRefresh(emf);
+        //useRefresh(emf);
+        createEntityWithComposedPK(emf);
     }
 
-    private static void useRefresh(EntityManagerFactory emf) {
+    private static void createEntityWithComposedPK(EntityManagerFactory emf){
         EntityManager em = emf.createEntityManager();
+
         try {
             em.getTransaction().begin();
-            Book book3 = em.find(Book.class, 3);
-            System.out.println(book3);
-            book3.setName("some book");
-            System.out.println("Before " + book3);
-            em.refresh(book3);
-            System.out.println("After " + book3);
+//            BookType bookType = new BookType();
+//            bookType.setCode("C001");
+//            bookType.setSubCode("SC001");
+//            bookType.setName("Fiction-Horror");
+//            em.persist(bookType);
+
+            ItemKey id = new ItemKey();
+            id.setCode("ABC");
+            id.setNumber(100);
+
+            Item i = new Item();
+            i.setId(id);
+            i.setName("ABC-100");
+            em.persist(i);
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,6 +47,24 @@ Main {
             em.close();
         }
     }
+
+//    private static void useRefresh(EntityManagerFactory emf) {
+//        EntityManager em = emf.createEntityManager();
+//        try {
+//            em.getTransaction().begin();
+//            Book book3 = em.find(Book.class, 3);
+//            System.out.println(book3);
+//            book3.setName("some book");
+//            System.out.println("Before " + book3);
+//            em.refresh(book3);
+//            System.out.println("After " + book3);
+//            em.getTransaction().commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            em.close();
+//        }
+//    }
     //private static void useGetReference (EntityManagerFactory emf){
     //    EntityManager em = emf.createEntityManager();
     //        try {
