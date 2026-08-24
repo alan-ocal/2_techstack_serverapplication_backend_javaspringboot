@@ -11,52 +11,81 @@ public class
 Main {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("library_persistence_unit");
-        findAndUpdateInstance(emf);
+        //detachAndReattachInstance(emf);
+        //removeInstance(emf);
+        //useGetReference(emf);
+        useRefresh(emf);
     }
 
-
-
-    public static void createInstance(EntityManagerFactory emf) {
+    private static void useRefresh(EntityManagerFactory emf) {
         EntityManager em = emf.createEntityManager();
-
-        EntityTransaction tx = em.getTransaction();
-
         try {
-           tx.begin();
-           Book book = new Book();
-           book.setName("my book4");
-           book.setIsbn("333-457");
-
-           em.persist(book);
-           tx.commit();
-
-           }catch (Exception e) {
-           e.printStackTrace();
-
-            }finally {
+            em.getTransaction().begin();
+            Book book3 = em.find(Book.class, 3);
+            System.out.println(book3);
+            book3.setName("some book");
+            System.out.println("Before " + book3);
+            em.refresh(book3);
+            System.out.println("After " + book3);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             em.close();
-            }
         }
-
-    public static void findAndUpdateInstance(EntityManagerFactory emf){
-        EntityManager em = emf.createEntityManager();
-
-        //When we did a defined by ID, a SELECT query had been generated and
-        //the requested data was retrieved from the database. The retrieved data then
-        // becomes available as an entity instance in the context
-         try {
-           em.getTransaction().begin();
-          Book book1 = em.find(Book.class,4 );
-          book1.setName("my new book");
-          System.out.println(book1);
-           em.getTransaction().commit();
-
-            }catch (Exception e) {
-                e.printStackTrace();
-            }finally {
-                em.close();
-            }
-        }
-
     }
+    //private static void useGetReference (EntityManagerFactory emf){
+    //    EntityManager em = emf.createEntityManager();
+    //        try {
+    //            em.getTransaction().begin();
+    //            //retrieve a row of data with a specified PK (lazily loading data from the database)
+    //            Book book3 = em.getReference(Book.class, 3);
+    //            System.out.println(book3);
+    //            em.getTransaction().commit();
+    //        }catch (Exception e) {
+    //            e.printStackTrace();
+    //        }finally {
+    //            em.close();
+    //        }
+    //    }
+    //}
+    //private static void removeInstance(EntityManagerFactory emf){
+    //    EntityManager em = emf.createEntityManager();
+    //    try {
+    //        em.getTransaction().begin();
+    //        Book book1 = em.find(Book.class, 2);
+    //        em.remove(book1);
+    //        em.getTransaction().commit();
+    //
+    //    }catch (Exception e) {
+    //        e.printStackTrace();
+    //    }finally {
+    //        em.close();
+    //    }
+    //
+    //    }
+    //}
+    //    public static void detachAndReattachInstance(EntityManagerFactory emf){
+    //        EntityManager em = emf.createEntityManager();
+    //
+    //          try {
+    //          em.getTransaction().begin();
+    //          Book book1 = new Book();
+    //          book1.setId(2);
+    //          book1.setName("my newest book");
+    //          book1.setIsbn("123-456");
+    //          em.merge(book1);
+    //          em.detach(book1);
+    //          //book1.setName("my newest book1"); //this LOC doesn't work and there should be no change in the database
+    //          em.getTransaction().commit();
+    //
+    //            }catch (Exception e) {
+    //                e.printStackTrace();
+    //            }finally {
+    //                em.close();
+    //            }
+    //        }
+    //
+    //    }
 
+}
