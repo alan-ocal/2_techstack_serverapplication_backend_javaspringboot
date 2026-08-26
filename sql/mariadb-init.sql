@@ -37,3 +37,20 @@ CREATE TABLE IF NOT EXISTS member2(
                                      name VARCHAR(255),
                                      member_type VARCHAR(255)
 );
+
+CREATE TABLE IF NOT EXISTS genre(
+                                    id INT AUTO_INCREMENT PRIMARY KEY,
+                                    code VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS  fiction(
+                                    id INT AUTO_INCREMENT PRIMARY KEY,
+                                    code VARCHAR(255),
+                                    setting VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS non_fiction(
+                                          id INT AUTO_INCREMENT PRIMARY KEY,
+                                          code VARCHAR(255),
+                                          topic VARCHAR(255)
+)

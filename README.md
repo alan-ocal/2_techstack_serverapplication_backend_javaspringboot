@@ -14,8 +14,8 @@ mariadb -u root -p < sql/mariadb-init.sql
 run a standalone `Main` class to verify the JPA integration and database connection:
 
 This will:
-- Persist `Member2` to the database.
-- A single table will be created. All child entities will be persisted in this table.
+- Persist `Genre` to the database.
+- A join table will be created. All child entities `Fiction` and `NonFiction` will be persisted in this table.
 
 ## Dependencies
 - `hibernate-core`: ORM framework Hibernate.

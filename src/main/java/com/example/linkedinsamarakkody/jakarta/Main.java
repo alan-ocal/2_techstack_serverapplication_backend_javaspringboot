@@ -13,7 +13,30 @@ public class Main {
         //oneToManyRelationship(emf);
         //manyToManyRelationship(emf);
         //mappedSuperclassStrategy(emf);
-        singleTableStrategy(emf);
+        //singleTableStrategy(emf);
+        joinedTableStrategy(emf);
+    }
+
+    private static void joinedTableStrategy (EntityManagerFactory emf){
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Fiction f = new Fiction();
+            f.setCode("F001");
+            f.setSetting("Forest");
+
+            NonFiction nf = new NonFiction();
+            nf.setCode("NF001");
+            nf.setTopic("Science");
+
+            em.persist(f);
+            em.persist(nf);
+
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
     }
 
     private static void singleTableStrategy (EntityManagerFactory emf){
