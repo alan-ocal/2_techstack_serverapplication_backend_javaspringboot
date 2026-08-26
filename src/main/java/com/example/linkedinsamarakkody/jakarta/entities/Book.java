@@ -3,6 +3,8 @@ package com.example.linkedinsamarakkody.jakarta.entities;
 import com.example.linkedinsamarakkody.jakarta.entities.Author;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "book")
 public class Book {
@@ -16,11 +18,24 @@ public class Book {
     private String name;
     private String isbn;
 
-    //one to one relationship
+    // one to one relationship
     @OneToOne
     @JoinColumn(name = "author_id")
     private Author author;
 
+    // Cascading is the mechanism that allows you to perform operations
+    // on related entities when performing operations on the parent entity.
+    @OneToMany (mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Review> reviews;
+
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
     public int getId() {
         return id;
     }
