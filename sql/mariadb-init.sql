@@ -10,9 +10,15 @@ CREATE TABLE IF NOT EXISTS grp(
                                   group_name VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS user_group(
-                                         user_id INT,
-                                         group_id INT,
-                                         FOREIGN KEY (user_id) REFERENCES user(user_id),
-                                         FOREIGN KEY (group_id) REFERENCES grp(group_id)
+CREATE TABLE IF NOT EXISTS student(
+                                   studentCode VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS teacher(
+                                   teacherCode VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS member(
+                                     id INT AUTO_INCREMENT PRIMARY KEY,
+                                     name VARCHAR(255)
 );

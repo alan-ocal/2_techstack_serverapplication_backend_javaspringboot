@@ -13,6 +13,8 @@
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="Elbasit99!"/>
             <property name="hibernate.show_sql" value="true"/>
+            <!--added for inheritance-->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
 
         </properties>
     </persistence-unit>

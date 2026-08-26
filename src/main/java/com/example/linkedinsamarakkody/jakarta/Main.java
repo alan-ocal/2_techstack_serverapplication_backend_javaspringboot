@@ -1,7 +1,5 @@
 package com.example.linkedinsamarakkody.jakarta;
 
-
-
 import com.example.linkedinsamarakkody.jakarta.entities.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -13,7 +11,29 @@ public class Main {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("library_persistence_unit");
         //oneToManyRelationship(emf);
-        manyToManyRelationship(emf);
+        //manyToManyRelationship(emf);
+        mappedSuperclassStrategy(emf);
+    }
+
+    private static void  mappedSuperclassStrategy(EntityManagerFactory emf){
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Student s = new Student();
+            s.setName("John");
+            s.setStudentCode("S001");
+
+            Teacher t = new Teacher();
+            t.setName("David");
+            t.setTeacherCode("T001");
+
+            em.persist(s);
+            em.persist(t);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
     }
 
     private static void manyToManyRelationship (EntityManagerFactory emf) {
