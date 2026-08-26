@@ -12,7 +12,29 @@ public class Main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("library_persistence_unit");
         //oneToManyRelationship(emf);
         //manyToManyRelationship(emf);
-        mappedSuperclassStrategy(emf);
+        //mappedSuperclassStrategy(emf);
+        singleTableStrategy(emf);
+    }
+
+    private static void singleTableStrategy (EntityManagerFactory emf){
+        EntityManager em = emf.createEntityManager();
+
+        try {
+        em.getTransaction().begin();
+        Student2 s2 = new Student2();
+        s2.setName("John");
+        s2.setStudentCode("S001");
+
+        Teacher2 t2 = new Teacher2();
+        t2.setName("David");
+        t2.setTeacherCode("T001");
+
+        em.persist(s2);
+        em.persist(t2);
+        em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
     }
 
     private static void  mappedSuperclassStrategy(EntityManagerFactory emf){

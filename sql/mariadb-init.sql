@@ -20,5 +20,20 @@ CREATE TABLE IF NOT EXISTS teacher(
 
 CREATE TABLE IF NOT EXISTS member(
                                      id INT AUTO_INCREMENT PRIMARY KEY,
-                                     name VARCHAR(255)
+                                     name VARCHAR(255),
+                                     member_type VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS student2(
+                                      studentCode VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS teacher2(
+                                      teacherCode VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS member2(
+                                     id INT AUTO_INCREMENT PRIMARY KEY,
+                                     name VARCHAR(255),
+                                     member_type VARCHAR(255)
 );

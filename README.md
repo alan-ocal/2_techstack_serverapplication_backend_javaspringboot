@@ -14,8 +14,9 @@ mariadb -u root -p < sql/mariadb-init.sql
 run a standalone `Main` class to verify the JPA integration and database connection:
 
 This will:
-- Persist `Student` and ` Teacher` to the database.
-- Mapped Superclass `Member` is not an entity. Hence, there is no table created for it.
+- Persist `Member2` to the database.
+- A single table will be created. All child entities will be persisted in this table.
+
 ## Dependencies
 - `hibernate-core`: ORM framework Hibernate.
 - `mariadb-java-client`: JDBC driver for MariaDB.
