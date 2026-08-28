@@ -13,7 +13,19 @@ CREATE TABLE IF NOT EXISTS field_category(
                                              FOREIGN KEY (field_id) REFERENCES field(field_id),
                                              FOREIGN KEY (category_id) REFERENCES category(category_id)
 );
-ALTER TABLE IF EXISTS author
-    ADD COLUMN street VARCHAR(255),
-    ADD COLUMN city VARCHAR(255),
-    ADD COLUMN postal_code VARCHAR(255);
+CREATE TABLE author
+(
+    author_id   INT AUTO_INCREMENT PRIMARY KEY,
+    author_name VARCHAR(255),
+    street      VARCHAR(255),
+    city        VARCHAR(255),
+    postal_code VARCHAR(255)
+);
+
+CREATE TABLE author2 (
+                        author_id INT AUTO_INCREMENT PRIMARY KEY,
+                        author_name VARCHAR(255),
+                        street VARCHAR(255),
+                        city VARCHAR(255),
+                        postal_code VARCHAR(255)
+);

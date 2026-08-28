@@ -18,9 +18,31 @@ public class Main {
             //singleTableStrategy(emf);
             //joinedTableStrategy(emf);
             //tablePerClassStrategy(emf);
-            compositionWithAssociation(emf);
+            //compositionWithAssociation(emf);
+            compositionWithEmbadable(emf);
         } finally {
             emf.close();
+        }
+    }
+
+    private static void compositionWithEmbadable(EntityManagerFactory emf) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Author author = new Author();
+            author.setName("William");
+
+            Address address = new Address();
+            address.setStreet("1st street");
+            address.setCity("London");
+            address.setPostalCode("12345");
+
+            author.setAddress(address);
+            em.persist(author);
+            em.getTransaction().commit();
+        }finally {
+            em.close();
         }
     }
 
