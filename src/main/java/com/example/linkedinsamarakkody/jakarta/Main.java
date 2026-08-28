@@ -6,18 +6,77 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.util.List;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("library_persistence_unit");
-        //oneToManyRelationship(emf);
-        //manyToManyRelationship(emf);
-        //mappedSuperclassStrategy(emf);
-        //singleTableStrategy(emf);
-        //joinedTableStrategy(emf);
-        tablePerClassStrategy(emf);
+        try {
+            //oneToManyRelationship(emf);
+            //manyToManyRelationship(emf);
+            //mappedSuperclassStrategy(emf);
+            //singleTableStrategy(emf);
+            //joinedTableStrategy(emf);
+            //tablePerClassStrategy(emf);
+            compositionWithAssociation(emf);
+        } finally {
+            emf.close();
+        }
     }
 
+    private static void compositionWithAssociation (EntityManagerFactory emf){
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Field f1 = new Field();
+            f1.setName("Music");
+            Field f2 = new Field();
+            f2.setName("Art");
+
+            Category c1 = new Category();
+            c1.setName("History");
+            Category c2 = new Category();
+            c2.setName("New Advancements");
+
+            // For each field, set the two categories, and for each category, set the two fields.
+            f1.setCategories(Set.of(c1, c2));
+            f2.setCategories(Set.of(c1, c2));
+
+            c1.setFields(Set.of(f1, f2));
+            c2.setFields(Set.of(f1, f2));
+
+            em.persist(f1);
+            em.persist(f2);
+
+            em.getTransaction().commit();
+
+            // Verify data
+            System.out.println("--- Verification ---");
+            List<Field> fields = em.createQuery("select f from Field f", Field.class).getResultList();
+            System.out.println("Total fields found: " + fields.size());
+            for (Field f : fields) {
+                System.out.println("Field: " + f.getName() + ", Categories: " +
+                        f.getCategories().stream().map(Category::getName).toList());
+            }
+
+            List<Category> categories = em.createQuery("select c from Category c", Category.class).getResultList();
+            System.out.println("Total categories found: " + categories.size());
+            for (Category c : categories) {
+                System.out.println("Category: " + c.getName() + ", Fields: " +
+                        c.getFields().stream().map(Field::getName).toList());
+            }
+
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+
+    }
     private static void tablePerClassStrategy (EntityManagerFactory emf){
         EntityManager em = emf.createEntityManager();
 
