@@ -14,9 +14,9 @@ mariadb -u root -p < sql/mariadb-init.sql
 run a standalone `Main` class to verify the JPA integration and database connection:
 
 This will:
-- Persist `Genre` to the database.
-- A join table will be created. All child entities `Fiction` and `NonFiction` will be persisted in this table.
-
+- A union happens by combining all child tables and data persist to child tables only `card` and `cash`.
+- AUTO_INCREMENT is not supported across all child tables when using the `table per class` strategy.
+- 
 ## Dependencies
 - `hibernate-core`: ORM framework Hibernate.
 - `mariadb-java-client`: JDBC driver for MariaDB.

@@ -14,7 +14,39 @@ public class Main {
         //manyToManyRelationship(emf);
         //mappedSuperclassStrategy(emf);
         //singleTableStrategy(emf);
-        joinedTableStrategy(emf);
+        //joinedTableStrategy(emf);
+        tablePerClassStrategy(emf);
+    }
+
+    private static void tablePerClassStrategy (EntityManagerFactory emf){
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            CardPayment card = new CardPayment();
+            card.setId(100);
+            card.setAmount(1000);
+            card.setCardNumber("1234 5678 5677 3456");
+
+            CashPayment cash = new CashPayment();
+            cash.setId(101);
+            cash.setAmount(2000);
+            cash.setCode("CA001");
+
+            em.persist(card);
+            em.persist(cash);
+
+            em.getTransaction().commit();
+
+            // Verify data
+            List<Payment> payments = em.createQuery("select p from Payment p", Payment.class).getResultList();
+            System.out.println("Total payments found: " + payments.size());
+            for (Payment p : payments) {
+                System.out.println("Payment: id=" + p.getId() + ", amount=" + p.getAmount() + ", type=" + p.getClass().getSimpleName());
+            }
+        } finally {
+            em.close();
+        }
     }
 
     private static void joinedTableStrategy (EntityManagerFactory emf){
