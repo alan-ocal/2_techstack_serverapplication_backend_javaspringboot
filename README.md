@@ -1,4 +1,3 @@
-# esirgeyen ve bağışlayan❤️ Allah'ın (c.c) adıyla - 2a0_bpb_rajput
 - `Spring Initializr` is used by creating a new project with `IntelliJ IDEA`
 
 ## Project Structure
