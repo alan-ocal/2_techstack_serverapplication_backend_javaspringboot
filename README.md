@@ -1,5 +1,3 @@
-# esirgeyen ve bağışlayan❤️ Allah'ın (c.c) adıyla - 2a0_linkedin_samarakkody
-- [GitHub Environment](https://friendly-xylophone-9wp9557559r2xw4g.github.dev/)
 # Jakarta Persistence and Hibernate
 
 This project demonstrates how to use `Jakarta Persistence (JPA)` with `Hibernate and MariaDB` in a Jakarta EE environment.
