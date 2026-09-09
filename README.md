@@ -1,4 +1,4 @@
-# esirgeyen ve bağışlayan❤️ Allah'ın (c.c) adıyla - 2
+# esirgeyen ve bağışlayan❤️ - 2
 
 ## Table of Contents
 - [1_spring_boot_concept](#1_spring_boot_concept)
