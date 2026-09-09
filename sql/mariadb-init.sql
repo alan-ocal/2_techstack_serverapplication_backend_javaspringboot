@@ -1,31 +1,37 @@
-USE library;
-CREATE TABLE IF NOT EXISTS field(
-                                    field_id INT AUTO_INCREMENT PRIMARY KEY,
-                                    field_name VARCHAR(255)
+-- Create a database
+DROP DATABASE IF EXISTS artclass;
+CREATE DATABASE IF NOT EXISTS artclass;
+-- Use the database
+USE artclass;
+-- Crate tables in the database
+CREATE TABLE IF NOT EXISTS class(
+                                    class_id INT AUTO_INCREMENT PRIMARY KEY,
+                                    class_name VARCHAR(255),
+                                    day_of_week VARCHAR(255)
 );
-CREATE TABLE IF NOT EXISTS category(
-                                       category_id INT AUTO_INCREMENT PRIMARY KEY,
-                                       category_name VARCHAR(255)
+CREATE TABLE IF NOT EXISTS teacher(
+                                      teacher_id INT AUTO_INCREMENT PRIMARY KEY,
+                                      teacher_name VARCHAR(255)
 );
-CREATE TABLE IF NOT EXISTS field_category(
-                                             field_id INT,
-                                             category_id INT,
-                                             FOREIGN KEY (field_id) REFERENCES field(field_id),
-                                             FOREIGN KEY (category_id) REFERENCES category(category_id)
+CREATE TABLE IF NOT EXISTS student(
+                                      student_id INT AUTO_INCREMENT PRIMARY KEY,
+                                      student_name VARCHAR(255)
 );
-CREATE TABLE author
-(
-    author_id   INT AUTO_INCREMENT PRIMARY KEY,
-    author_name VARCHAR(255),
-    street      VARCHAR(255),
-    city        VARCHAR(255),
-    postal_code VARCHAR(255)
+CREATE TABLE IF NOT EXISTS student_class(
+                                            student_id INT,
+                                            class_id INT,
+                                            FOREIGN KEY (student_id) REFERENCES student(student_id),
+                                            FOREIGN KEY (class_id) REFERENCES class(class_id)
 );
-
-CREATE TABLE author2 (
-                        author_id INT AUTO_INCREMENT PRIMARY KEY,
-                        author_name VARCHAR(255),
-                        street VARCHAR(255),
-                        city VARCHAR(255),
-                        postal_code VARCHAR(255)
+CREATE TABLE IF NOT EXISTS review(
+                                     review_id INT AUTO_INCREMENT PRIMARY KEY,
+                                     teacher_id INT,
+                                     comment VARCHAR(255),
+                                     rating INT
 );
+ALTER TABLE IF EXISTS class
+    ADD COLUMN teacher_id INT;
+ALTER TABLE class
+    ADD CONSTRAINT fk_teacher_id_class FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id);
+ALTER TABLE review
+    ADD CONSTRAINT fk_teacher_id_review FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id);

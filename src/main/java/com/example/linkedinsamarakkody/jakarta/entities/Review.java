@@ -1,6 +1,5 @@
 package com.example.linkedinsamarakkody.jakarta.entities;
 
-import com.example.linkedinsamarakkody.jakarta.entities.Book;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,23 +9,24 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
-    private int id;
+    private Integer review_id;
 
+    @Column(name = "comment")
     private String comment;
 
-     @ManyToOne
-    // The @JoinColumn annotation is used to specify the foreign key column
-    // in the review table that references the book table.
-    @JoinColumn(name = "book_id")
-    private Book book;
+    @Column
+    private Integer rating;
 
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
 
-    public int getId() {
-        return id;
+    public Integer getReview_id() {
+        return review_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setReview_id(Integer review_id) {
+        this.review_id = review_id;
     }
 
     public String getComment() {
@@ -37,16 +37,19 @@ public class Review {
         this.comment = comment;
     }
 
-    public Book getBook() {
-        return book;
+    public Integer getRating() {
+        return rating;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    @Override
-    public String toString() {
-        return "Review [id=" + id + ", comment=" + comment + "]";
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
+
 }
