@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import com.example.linkedinsamarakkody.jakarta.entities.Address;
 
 @Entity
 @Table(name = "author")
@@ -22,8 +21,13 @@ public class Author {
     @Column(name = "author_name")
     private String name;
 
-    @Embedded
-    private Address address;
+    private String street;
+    private String city;
+
+    @Column(name = "postal_code")
+    private String postalCode;
+
+
 
     public int getId() {
         return id;
@@ -41,12 +45,28 @@ public class Author {
         this.name = name;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getStreet() {
+        return street;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     @Override

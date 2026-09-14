@@ -16,8 +16,9 @@ public class Book {
     @Column (name = "book_name")
     private String name;
     private String isbn;
+    private Double price;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn  (name = "author_id")
     private Author author;
 
@@ -43,6 +44,14 @@ public class Book {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Override
